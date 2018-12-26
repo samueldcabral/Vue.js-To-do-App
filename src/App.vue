@@ -23,7 +23,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* color: #2c3e50; */
-  color: #38465e;
+  color: #51678a;
+  /* color: #38465e; */
   margin-top: 20px;
   background-color: #FFF8F0;
   min-height: 95vh;
