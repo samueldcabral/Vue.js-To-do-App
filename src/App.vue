@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="container" style="border-radius: 10px;">
     <img alt="Vue logo" src="./assets/logo.png">
     <todo msg="To-do App in Vue"/>
   </div>

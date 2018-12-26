@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="todo">
     <h1>{{ msg }}</h1>
     <br>
     <div class="input-group mb-3 input-app">
@@ -79,9 +79,10 @@ export default {
       editTodo[0].edit = false
     },
     starTodo(e){
-      // alert('inicio')
       let a = this.posts.filter(x => x.id == e.target.id)
       this.starred.push({id: a[0].id, title: a[0].title, completed: a[0].completed, edit: a[0].completed})
+      let newPosts = this.posts.filter(x => x.id != e.target.id)
+      this.posts = newPosts
     } 
   }
 }
@@ -125,6 +126,10 @@ a {
 .completed {
   text-decoration: line-through;
   background-color: #f8f8f8;
+}
+
+.todo {
+  border-radius: 10px;
 }
 
 </style>
