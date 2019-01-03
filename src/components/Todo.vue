@@ -27,7 +27,6 @@
       <div class="form-control" @click="completedTodo" :id="post.id" :class="{completed: post.completed}" v-if="!post.edit" @dblclick="editTodo">{{post.title}} </div>
       <input type="text" class="form-control text-center" :id="post.id" :value="post.title" @blur="noEditTodo" v-else>
       <div class="input-group-append">
-        <button class="btn btn-success" type="button" :id="post.id" @click="starTodo"><i class="fa fa-star" :id="post.id" aria-hidden="true"></i></button>
         <button class="btn btn-danger" type="button" :id="post.id" @click="deleteTodo"><i class="fa fa-times" :id="post.id" aria-hidden="true"></i></button>
       </div>
     </span>
@@ -43,7 +42,6 @@ export default {
   },
   data() {
     return {
-      starred: [],
       posts: [{id:1, title: "Learn Vue", completed: false, edit: false}, {id:2, title:"Have a good time", completed: false, edit: false}, {id:3,title:"Conquer the World", completed: false, edit: false}],
       valor: "samuel",
     }
@@ -77,12 +75,6 @@ export default {
         editTodo[0].title = e.target.value
       }
       editTodo[0].edit = false
-    },
-    starTodo(e){
-      let a = this.posts.filter(x => x.id == e.target.id)
-      this.starred.push({id: a[0].id, title: a[0].title, completed: a[0].completed, edit: a[0].completed})
-      let newPosts = this.posts.filter(x => x.id != e.target.id)
-      this.posts = newPosts
     } 
   }
 }
