@@ -10,16 +10,10 @@
 ### Here is a list of things you can currently do in this app:
 
 
+![Print Screen of the Todo App](https://i.imgur.com/pFbkBLj.png "Vue.js Todo App")
 
 | Feature        | Status       |
 | ------------- |:-------------:| 
 | Add todo    | OK | 
 | Remove todo      | OK      |  
-| Edit todo  | Not implemented      | 
-| Edit todo via double click  | Not implemented      | 
-| Star todo  | Not implemented      | 
-
-
-
----
-sudo bash -c 'echo 524288 > /proc/sys/fs/inotify/max_user_watches'
+| Edit todo via double click  | OK    | 
