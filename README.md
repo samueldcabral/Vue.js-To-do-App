@@ -18,3 +18,8 @@
 | Edit todo  | Not implemented      | 
 | Edit todo via double click  | Not implemented      | 
 | Star todo  | Not implemented      | 
+
+
+
+---
+sudo bash -c 'echo 524288 > /proc/sys/fs/inotify/max_user_watches'

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app" class="container" style="border-radius: 10px;">
     <img alt="Vue logo" src="./assets/logo.png">
     <todo msg="To-do App in Vue"/>
   </div>
@@ -23,7 +23,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* color: #2c3e50; */
-  color: #38465e;
+  color: #51678a;
+  /* color: #38465e; */
   margin-top: 20px;
   background-color: #FFF8F0;
   min-height: 95vh;
