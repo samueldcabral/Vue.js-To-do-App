@@ -1,7 +1,9 @@
 # To do App in Vue v1.0
 
----
+>> This is the deployed version, please test it!
 
+[https://samueldcabral.github.io/Vue.js-To-do-App/](https://samueldcabral.github.io/Vue.js-To-do-App/ "Deployed App")
+---
 
 ## This is a simple to do app using Vue.js
 ## Later I will convert this into a PWA
