@@ -9,24 +9,12 @@
         <button class="btn btn-success" type="button" id="button-addon2" @click="addTodo">Add</button>
       </div>
     </div>
-    <!-- Favs -->
-  <transition-group name="list" tag="p">
-    <span v-for="star in starred" v-bind:key="star.id" class="list-item input-group mb-3 input-app">
-      <div class="form-control" @click="completedTodo" :id="star.id" :class="{completed: star.completed}" v-if="!star.edit" @dblclick="editTodo">{{star.title}} </div>
-      <input type="text" class="form-control text-center" :id="star.id" :value="star.title" @blur="noEditTodo" v-else>
-      <div class="input-group-append">
-        <button class="btn btn-success" type="button" :id="star.id" @click="starTodo"><i class="fa fa-star" aria-hidden="true"></i></button>
-        <button class="btn btn-danger" type="button" :id="star.id" @click="deleteTodo"><i class="fa fa-times" aria-hidden="true"></i></button>
-      </div>
-    </span>
-  </transition-group>
-
-  <!-- Normal -->
   <transition-group name="list" tag="p">
     <span v-for="post in posts" v-bind:key="post.id" class="list-item input-group mb-3 input-app">
       <div class="form-control" @click="completedTodo" :id="post.id" :class="{completed: post.completed}" v-if="!post.edit" @dblclick="editTodo">{{post.title}} </div>
       <input type="text" class="form-control text-center" :id="post.id" :value="post.title" @blur="noEditTodo" v-else>
       <div class="input-group-append">
+        <button class="btn starButton" type="button" :id="post.id" @click="starTodo" :class="{'starred': post.starred}"><i class="fa fa-star" :id="post.id" aria-hidden="true"></i></button>
         <button class="btn btn-danger" type="button" :id="post.id" @click="deleteTodo"><i class="fa fa-times" :id="post.id" aria-hidden="true"></i></button>
       </div>
     </span>
@@ -42,24 +30,43 @@ export default {
   },
   data() {
     return {
-      posts: [{id:1, title: "Learn Vue", completed: false, edit: false}, {id:2, title:"Have a good time", completed: false, edit: false}, {id:3,title:"Conquer the World", completed: false, edit: false}],
+      posts: [{id:1, title: "Learn Vue", completed: false, edit: false, starred: false}, {id:2, title:"Have a good time", completed: false, edit: false, starred: false}, {id:3,title:"Conquer the World", completed: false, edit: false, starred: false}],
       valor: "samuel",
     }
   },
   methods: {
+    starTodo(e){
+      let posts = this.posts.map(x => {
+        if(x.id == e.target.id){
+          x.starred = !x.starred
+        }
+        return x
+      })
+      this.posts = posts
+    },
     addTodo(){
       const todo = document.querySelector("#todo");
-      const id = this.posts.length + 1;
+      let id = Math.random() * 100
+      let result = this.posts.some(x => x.id == id)
+
+      while(result){
+        id = Math.random() * 100
+        result = this.posts.some(x => x.id == id)
+      }
+
       if(todo.value){
-        this.posts.push({id, title: todo.value, completed: false});
+        this.posts.push({id, title: todo.value, completed: false, edit: false, starred: false});
         todo.value = '';
       }else{
         alert("Can't add empty todo!")
       }
     },
     deleteTodo(e){
-      let newPosts = this.posts.filter(x => x.id != e.target.id)
-      this.posts = newPosts
+      let thisTodo = this.posts.filter(x => x.id == e.target.id)
+      if(!thisTodo[0].starred){
+        let newPosts = this.posts.filter(x => x.id != e.target.id)
+        this.posts = newPosts
+      }
     },
     completedTodo(e){
       let completedTodo = this.posts.filter(x => x.id == e.target.id)
@@ -108,7 +115,7 @@ a {
 }
 
 .list-enter-active, .list-leave-active {
-  transition: all 0.3s;
+  transition: all 0.227s;
 }
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -122,6 +129,16 @@ a {
 
 .todo {
   border-radius: 10px;
+}
+
+.starButton {
+  color: #ccc;
+  background: #fff;
+  border-top: 1px #ccc solid;
+  border-bottom: 1px #ccc solid;
+}
+.starred{
+  color: #00ca85;
 }
 
 </style>
